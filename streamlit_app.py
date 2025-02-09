@@ -1,6 +1,5 @@
 import streamlit as st
 import pathlib
-from backend.modules.get_comments import get_youtube_comments
 
 def main():
     st.set_page_config(page_title="YouTube Sentiment Analysis", page_icon="images\\\\YouTube-Icon-Full-Color-Logo.wine.svg", layout="wide")
