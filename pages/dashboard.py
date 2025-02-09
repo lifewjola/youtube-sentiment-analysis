@@ -251,13 +251,10 @@ if email:
         with st.sidebar.expander("ℹ️ Metric Explanations"):
             st.write("- Overall Sentiment is based on the sentiment with the most comment likes.")
             st.write("- The deltas indicate performance in comparison to the last video")
-        bmc_url = "https://buymeacoffee.com/dataprincess"
+        
+        st.sidebar.image("images/bmc.png", width=150)
+        st.sidebar.markdown("[☕ Buy Me a Coffee to support my work!](https://buymeacoffee.com/dataprincess)", unsafe_allow_html=True)
 
-        st.sidebar.markdown("Buy me a coffee if you appreciate the insights:")
-        st.sidebar.markdown(
-            f'<a href="{bmc_url}" target="_blank"><img src="images/bmc.png" width="150"></a>',
-            unsafe_allow_html=True
-        )
 
 
 

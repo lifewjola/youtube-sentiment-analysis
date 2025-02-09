@@ -13,12 +13,8 @@ with st.form("signup"):
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     password_confirm = st.text_input("Confirm Password", type="password")
-    st.markdown("Buy me a coffee to support my work!")
-    bmc_url = "https://buymeacoffee.com/dataprincess"
-    st.markdown(
-        f'<a href="{bmc_url}" target="_blank"><img src="images/bmc.png" width="150"></a>',
-        unsafe_allow_html=True
-    )
+    st.image("images/bmc.png", width=150)
+    st.markdown("[☕ Buy Me a Coffee to support my work!](https://buymeacoffee.com/dataprincess)", unsafe_allow_html=True)
 
     submitted = st.form_submit_button("Create my account!")
 
