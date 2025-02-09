@@ -8,9 +8,9 @@ if "email" in st.session_state:
     st.switch_page("pages/dashboard.py")  
 else:
     st.title("Log In")
-    st.sidebar.image("images/bmc.png", width=150)
-    st.sidebar.markdown("[☕ Buy Me a Coffee to support my work!](https://buymeacoffee.com/dataprincess)", unsafe_allow_html=True)
-    
+    st.image("images/bmc.png", width=150)
+    st.markdown("[☕ Buy Me a Coffee to support my work!](https://buymeacoffee.com/dataprincess)", unsafe_allow_html=True)
+
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
 

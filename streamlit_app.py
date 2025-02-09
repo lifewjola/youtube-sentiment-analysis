@@ -30,7 +30,10 @@ def main():
         if st.button("Sign Up", key="s-button"):
             st.switch_page("pages/signup.py")
 
-    st.markdown("<h3 style='text-align: center;>[☕ Buy Me a Coffee to support my work!](https://buymeacoffee.com/dataprincess)</h3>", unsafe_allow_html=True)
+    st.markdown(
+        "<h3 style='text-align: center;'><a href='https://buymeacoffee.com/dataprincess' target='_blank'>☕ Buy Me a Coffee to support my work!</a></h3>", 
+        unsafe_allow_html=True
+    )
 
 if __name__ == "__main__":
     main()
