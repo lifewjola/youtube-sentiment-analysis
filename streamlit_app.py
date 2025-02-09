@@ -32,7 +32,7 @@ def main():
 
     st.markdown("#### Buy me a coffee to support my work!")
     bmc_url = "https://buymeacoffee.com/dataprincess"
-    st.sidebar.markdown(
+    st.markdown(
         f'<a href="{bmc_url}" target="_blank"><img src="images/bmc" width="150"></a>',
         unsafe_allow_html=True
     )
