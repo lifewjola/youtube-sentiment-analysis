@@ -8,6 +8,8 @@ if "email" in st.session_state:
     st.switch_page("pages/dashboard.py")  
 else:
     st.title("Log In")
+    st.markdown("Buy me a coffee to support my work!")
+    st.image("images/bmc", width=100)
 
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")

@@ -13,6 +13,8 @@ with st.form("signup"):
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     password_confirm = st.text_input("Confirm Password", type="password")
+    st.markdown("Buy me a coffee to support my work!")
+    st.image("images/bmc", width=100)
     submitted = st.form_submit_button("Create my account!")
 
     if submitted:

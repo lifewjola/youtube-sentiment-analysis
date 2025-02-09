@@ -30,6 +30,9 @@ def main():
         if st.button("Sign Up", key="s-button"):
             st.switch_page("pages/signup.py")
 
+    st.markdown("#### Buy me a coffee to support my work!")
+    st.image("images/bmc", width=200)
+
 
 if __name__ == "__main__":
     main()

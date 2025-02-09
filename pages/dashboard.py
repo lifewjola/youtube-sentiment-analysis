@@ -248,9 +248,10 @@ if email:
                 for _, row in selected_comments[selected_comments["sentiment"] == "NEGATIVE"].iterrows():
                     st.write(row["comment_text"])
 
-        with st.sidebar.expander("ℹ️ Metric Explanations", expanded=True):
+        with st.sidebar.expander("ℹ️ Metric Explanations"):
             st.write("- Overall Sentiment is based on the sentiment with the most comment likes.")
             st.write("- The deltas indicate performance in comparison to the last video")
+        st.sidebar.image("images/bmc", width=150)
 
 
         def generate_wordcloud(text, colormap):
