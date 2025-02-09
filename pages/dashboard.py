@@ -54,13 +54,15 @@ if email:
                     conn.close()
 
                     video_urls = get_video_urls_from_username(youtube_username)
-                    video_urls_latest = get_video_urls_from_username(youtube_username)[:20]
+                    video_urls_latest = get_video_urls_from_username(youtube_username)[:10]
 
                     if not video_urls:
                         st.warning("No videos found for this username.")
                     else:
                         message_placeholder = st.empty()
-                        message_placeholder.write(f"Found {len(video_urls)} videos. Processing your latest 20 videos... \nThis may take a while, please keep the tab open")
+                        message_placeholder.write(f"Found {len(video_urls)} videos.")
+                        message_placeholder.write("Processing your latest 10 videos and top 100 comments on each video")
+                        message_placeholder.write("This may take a while, please keep the tab open")
                         
                         for i, video_url in enumerate(video_urls_latest, start=1):
                             if video_url in existing_video_urls:

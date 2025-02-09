@@ -7,7 +7,7 @@ YOUTUBE_API_KEY = st.secrets["YOUTUBE_API_KEY"]
 
 youtube = googleapiclient.discovery.build("youtube", "v3", developerKey=YOUTUBE_API_KEY)
 
-def get_youtube_comments(video_url, max_comments=500): 
+def get_youtube_comments(video_url, max_comments=100): 
     video_id = extract_video_id(video_url)
         
     if not video_id:
