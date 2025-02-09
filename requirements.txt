@@ -2,6 +2,7 @@ google-api-python-client
 streamlit
 pandas
 google-generativeai
+youtube-transcript-api
 bcrypt
 plotly
 matplotlib
