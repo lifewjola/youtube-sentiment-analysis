@@ -162,6 +162,9 @@ if email:
             comment_likes = selected_comments["like_count"]
             weighted_sentiments = selected_comments.groupby("sentiment")["like_count"].sum()
             overall_sentiment = weighted_sentiments.idxmax() if not weighted_sentiments.empty else "N/A"
+        
+        else:
+            overall_sentiment = "N/A"
 
 
         disable_delta = selected_video_title == "All" or previous_video is None
