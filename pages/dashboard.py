@@ -255,7 +255,7 @@ if email:
 
         st.sidebar.markdown("Buy me a coffee if you appreciate the insights:")
         st.sidebar.markdown(
-            f'<a href="{bmc_url}" target="_blank"><img src="images/bmc" width="150"></a>',
+            f'<a href="{bmc_url}" target="_blank"><img src="images/bmc.png" width="150"></a>',
             unsafe_allow_html=True
         )
 

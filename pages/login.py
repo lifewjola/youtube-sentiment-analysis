@@ -11,7 +11,7 @@ else:
     st.markdown("Buy me a coffee to support my work!")
     bmc_url = "https://buymeacoffee.com/dataprincess"
     st.markdown(
-        f'<a href="{bmc_url}" target="_blank"><img src="images/bmc" width="150"></a>',
+        f'<a href="{bmc_url}" target="_blank"><img src="images/bmc.png" width="150"></a>',
         unsafe_allow_html=True
     )
 
