@@ -23,7 +23,12 @@ def get_video_metadata(video_url):
             description = video_data["snippet"].get("description", "")
             published_at = video_data["snippet"]["publishedAt"]
             video_url = f"https://www.youtube.com/watch?v={vid_id}"
-            thumbnail_url = video_data["snippet"].get("thumbnails", {}).get("default", {}).get("url", "")
+            thumbnails = video_data["snippet"].get("thumbnails", {})
+            thumbnail_url = (
+                thumbnails.get("standard", {}).get("url") or 
+                thumbnails.get("high", {}).get("url") or 
+                thumbnails.get("medium", {}).get("url") or
+                thumbnails.get("default", {}).get("url", ""))
             views = int(video_data["statistics"].get("viewCount", 0))
             likes = int(video_data["statistics"].get("likeCount", 0))
 
