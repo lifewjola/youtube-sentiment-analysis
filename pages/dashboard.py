@@ -251,7 +251,14 @@ if email:
         with st.sidebar.expander("ℹ️ Metric Explanations"):
             st.write("- Overall Sentiment is based on the sentiment with the most comment likes.")
             st.write("- The deltas indicate performance in comparison to the last video")
-        st.sidebar.image("images/bmc", width=150)
+        bmc_url = "https://buymeacoffee.com/dataprincess"
+
+        st.sidebar.markdown("Buy me a coffee if you appreciate the insights:")
+        st.sidebar.markdown(
+            f'<a href="{bmc_url}" target="_blank"><img src="images/bmc" width="150"></a>',
+            unsafe_allow_html=True
+        )
+
 
 
         def generate_wordcloud(text, colormap):

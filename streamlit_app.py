@@ -31,7 +31,12 @@ def main():
             st.switch_page("pages/signup.py")
 
     st.markdown("#### Buy me a coffee to support my work!")
-    st.image("images/bmc", width=200)
+    bmc_url = "https://buymeacoffee.com/dataprincess"
+    st.sidebar.markdown(
+        f'<a href="{bmc_url}" target="_blank"><img src="images/bmc" width="150"></a>',
+        unsafe_allow_html=True
+    )
+
 
 
 if __name__ == "__main__":

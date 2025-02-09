@@ -14,7 +14,12 @@ with st.form("signup"):
     password = st.text_input("Password", type="password")
     password_confirm = st.text_input("Confirm Password", type="password")
     st.markdown("Buy me a coffee to support my work!")
-    st.image("images/bmc", width=100)
+    bmc_url = "https://buymeacoffee.com/dataprincess"
+    st.sidebar.markdown(
+        f'<a href="{bmc_url}" target="_blank"><img src="images/bmc" width="150"></a>',
+        unsafe_allow_html=True
+    )
+
     submitted = st.form_submit_button("Create my account!")
 
     if submitted:

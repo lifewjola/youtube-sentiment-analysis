@@ -9,7 +9,12 @@ if "email" in st.session_state:
 else:
     st.title("Log In")
     st.markdown("Buy me a coffee to support my work!")
-    st.image("images/bmc", width=100)
+    bmc_url = "https://buymeacoffee.com/dataprincess"
+    st.sidebar.markdown(
+        f'<a href="{bmc_url}" target="_blank"><img src="images/bmc" width="150"></a>',
+        unsafe_allow_html=True
+    )
+
 
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
