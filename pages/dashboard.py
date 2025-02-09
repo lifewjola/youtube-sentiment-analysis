@@ -3,7 +3,6 @@ import sqlite3
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from datetime import datetime, timedelta
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 from backend.get_name import get_nickname_by_email
