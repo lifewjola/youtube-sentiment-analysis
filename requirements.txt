@@ -1,9 +1,7 @@
 google-api-python-client
 streamlit
-re
 pandas
 google-generativeai
-sqlite3
 bcrypt
 plotly
 matplotlib
