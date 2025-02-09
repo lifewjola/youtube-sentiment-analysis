@@ -1,0 +1,30 @@
+.st-key-d-button button, .st-key-l-button button, .st-key-s-button button {
+    width: 350px; 
+    height: 160px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.st-key-d-button button p, .st-key-l-button button p, .st-key-s-button button p {
+    font-size: 20px;  
+    font-family: "comic sans ms", "sans-serif";
+    font-weight: bold;
+}
+
+.st-key-d-button button { background-color: #FF5733; color: white; top: 35%; }
+.st-key-l-button button { background-color: #3498db; color: white; top: 55%; }
+.st-key-s-button button { background-color: #2ecc71; color: white; top: 75%; }
+
+.st-key-d-button button:hover { transform: translateX(-50%) scale(1.05); color: black; }
+.st-key-l-button button:hover { transform: translateX(-50%) scale(1.05); color: yellow; }
+.st-key-s-button button:hover { transform: translateX(-50%) scale(1.05); color: darkblue; }
