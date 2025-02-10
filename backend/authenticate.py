@@ -1,5 +1,5 @@
 import sqlite3
-from backend.database import verify_password
+from database import verify_password
 
 def authenticate_user(email, password):
     conn = sqlite3.connect('youtube_dashboard.db')

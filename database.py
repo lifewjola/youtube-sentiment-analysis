@@ -7,8 +7,6 @@ def hash_password(password):
     return hashed_password.decode('utf-8')
 
 def email_exist(email):
-
-    # compare email with the emails in the database and return true if it exist
     conn = sqlite3.connect('youtube_dashboard.db')
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM user WHERE email = ?", (email,))

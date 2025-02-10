@@ -1,7 +1,7 @@
 from backend.create_user import create_user
 import streamlit as st
 import re
-from backend.database import email_exist
+from database import email_exist
 
 st.set_page_config(page_title="Signup", page_icon="images/YouTube-Icon-Full-Color-Logo.wine.svg", layout="centered")
 

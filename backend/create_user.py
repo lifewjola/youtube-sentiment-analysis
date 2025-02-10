@@ -1,5 +1,5 @@
 import sqlite3
-from backend.database import hash_password
+from database import hash_password
 
 def create_user(nick_name, email, password, youtube_username):
     conn = sqlite3.connect('youtube_dashboard.db')

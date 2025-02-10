@@ -1,5 +1,5 @@
 import sqlite3
-from backend.database import hash_password
+from database import hash_password
 
 def change_password(user_id, new_password):
     conn = sqlite3.connect('youtube_dashboard.db')
