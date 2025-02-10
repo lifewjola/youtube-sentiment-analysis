@@ -1,5 +1,6 @@
 google-api-python-client
 streamlit
+streamlit-cookies-manager
 pandas
 google-generativeai
 youtube-transcript-api
