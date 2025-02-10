@@ -60,9 +60,7 @@ if email:
                         st.warning("No videos found for this username.")
                     else:
                         message_placeholder = st.empty()
-                        message_placeholder.write(f"Found {len(video_urls)} videos.")
-                        message_placeholder.write("Processing your latest 10 videos and top 100 comments on each video")
-                        message_placeholder.write("This may take a while, please keep the tab open")
+                        message_placeholder.write(f"Found {len(video_urls)} videos. Processing your latest 10 videos and top 100 comments on each video. This may take a while, please keep the tab open")
                         
                         for i, video_url in enumerate(video_urls_latest, start=1):
                             if video_url in existing_video_urls:
@@ -80,14 +78,16 @@ if email:
                                         upsert_comments_for_video(video_url, video_id)
                                         analyze_sentiment_for_video(video_id)
                             except Exception as inner_e:
-                                st.error(f"Error processing video {video_url}: {inner_e}")
+                                error_placeholder = st.empty()
+                                error_placeholder.error(f"Error processing video {video_url}: {inner_e}")
                 
                         message_placeholder.empty()
 
                         st.session_state["video_fetch_done"] = True
 
                 except Exception as e:
-                    st.error(f"Error fetching videos: {e}")
+                    error_placeholder = st.empty()
+                    error_placeholder.error(f"Error fetching videos: {e}")
 
         def load_data(user_id):
             conn = sqlite3.connect(DATABASE)
