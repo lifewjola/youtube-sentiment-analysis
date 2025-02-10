@@ -106,7 +106,8 @@ if email:
 
         if selected_video_title == "All":
             st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg", width=200)
-            st.markdown(f"#### Showing Insights on all videos by {youtube_username}")
+            st.markdown(f"#### Showing Insights on the 10 latest videos by {youtube_username}")
+            st.write("NOTE: Only the top 100 comments on each video are analyzed.")
 
             selected_comments = comments_df  
             selected_video = pd.Series({
