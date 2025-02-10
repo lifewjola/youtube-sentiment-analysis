@@ -6,7 +6,7 @@ def hash_password(password):
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
     return hashed_password.decode('utf-8')
 
-def email_exist(email) -> bool:
+def email_exist(email):
 
     # compare email with the emails in the database and return true if it exist
     conn = sqlite3.connect('youtube_dashboard.db')

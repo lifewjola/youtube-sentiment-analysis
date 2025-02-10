@@ -13,7 +13,7 @@ conn.close()
 conn = sqlite3.connect("youtube_dashboard.db")
 cursor = conn.cursor()
 
-table_name = "comments" 
+table_name = "videos" 
 cursor.execute(f"SELECT * FROM {table_name} LIMIT 1000;") 
 
 rows = cursor.fetchall()
