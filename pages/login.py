@@ -1,5 +1,6 @@
 import streamlit as st
 from backend.authenticate import authenticate_user
+from database import email_exist
 
 st.set_page_config(page_title="Login", page_icon="images/YouTube-Icon-Full-Color-Logo.wine.svg", layout="centered")
 
@@ -27,6 +28,9 @@ else:
                         st.switch_page("pages/dashboard.py")
                 else:
                     st.error("❌ Invalid email or password.")
+
+            except not email_exist(email):
+                st.error("⚠️ Email not found. [Sign up](signup) to create an account.")
             except ValueError as e:
                 st.error(f"⚠️ {e}") 
             except Exception as e:
