@@ -29,10 +29,11 @@ else:
                 else:
                     st.error("❌ Invalid email or password.")
 
-            except not email_exist(email):
-                st.error("⚠️ Email not found. [Sign up](signup) to create an account.")
             except ValueError as e:
-                st.error(f"⚠️ {e}") 
+                if not email_exist(email):
+                    st.error("⚠️ Email not found. [Sign up](signup) to create an account.")
+                else:
+                    st.error(f"⚠️ {e}") 
             except Exception as e:
                 st.error(f"❌ Unexpected error: {e}") 
 
