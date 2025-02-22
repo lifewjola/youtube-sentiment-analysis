@@ -12,7 +12,7 @@ from backend.upsert_video import upsert_video
 from backend.upsert_comments import upsert_comments_for_video
 from backend.upsert_sentiment import analyze_sentiment_for_video
 
-st.set_page_config(page_title="YouTube Sentiment Dashboard", page_icon="images/YouTube-Icon-Full-Color-Logo.wine.svg", layout="wide", )
+st.set_page_config(page_title="YouTube Sentiment Dashboard", page_icon="images/ytlogo.svg", layout="wide", )
 
 def generate_wordcloud(text, colormap):
 

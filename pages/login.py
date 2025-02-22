@@ -2,7 +2,7 @@ import streamlit as st
 from backend.authenticate import authenticate_user
 from database import email_exist
 
-st.set_page_config(page_title="Login", page_icon="images/YouTube-Icon-Full-Color-Logo.wine.svg", layout="centered")
+st.set_page_config(page_title="Login", page_icon="images/ytlogo.svg", layout="centered")
 
  
 

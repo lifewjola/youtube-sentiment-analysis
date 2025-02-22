@@ -2,24 +2,27 @@ import streamlit as st
 import pathlib
 
 def main():
-    st.set_page_config(page_title="YouTube Sentiment Analysis", page_icon="images\\YouTube-Icon-Full-Color-Logo.wine.svg", layout="wide")
+    st.set_page_config(
+        page_title="YouTube Sentiment Analysis", 
+        page_icon="images/ytlogosvg",  
+        layout="wide"
+    )
 
-    st.image("images\\YouTube-White-Full-Color-Logo.wine.png", width=200)
+    st.image("images/ytfulllogo.png", width=200)
 
     def load_css(file):
         with open(file) as f:
-            st.html(f"<style>{f.read()}</style>")
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
     css_path = pathlib.Path("styles.css")
     load_css(css_path)
 
     st.markdown(
-         "<h1 style='text-align: center; font-size: 2.5rem;'>Understand Your YT Audience Better!</h1>",
-         unsafe_allow_html=True
-     )
+        "<h1 style='text-align: center; font-size: 2.5rem;'>Understand Your YT Audience Better!</h1>",
+        unsafe_allow_html=True
+    )
     
-  
-    col1, col2, col3 = st.columns(3, vertical_alignment="center")
+    col1, col2, col3 = st.columns(3)
     with col1:
         if st.button("Start Exploring", key="d-button"):
             st.switch_page("pages/dashboard.py")
