@@ -1,5 +1,5 @@
 .st-key-d-button button, .st-key-l-button button, .st-key-s-button button {
-    max-width: 90%; /* Makes buttons responsive */
+    max-width: 90%; 
     width: 350px; 
     height: 160px;
     font-weight: bold;
@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px auto; /* Centers the buttons */
+    margin: 20px auto;
     position: relative;
 }
 

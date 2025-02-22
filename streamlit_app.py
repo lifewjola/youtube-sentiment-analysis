@@ -2,9 +2,9 @@ import streamlit as st
 import pathlib
 
 def main():
-    st.set_page_config(page_title="YouTube Sentiment Analysis", page_icon="images/\\YouTube-Icon-Full-Color-Logo.wine.svg", layout="wide")
+    st.set_page_config(page_title="YouTube Sentiment Analysis", page_icon="images\\YouTube-Icon-Full-Color-Logo.wine.svg", layout="wide")
 
-    st.image("images/YouTube-White-Full-Color-Logo.wine.png", width=200)
+    st.image("images\\YouTube-White-Full-Color-Logo.wine.png", width=200)
 
     def load_css(file):
         with open(file) as f:
@@ -14,7 +14,7 @@ def main():
     load_css(css_path)
 
     st.markdown(
-         "<h1 style='text-align: center; font-size: 2.5rem; color: lightgray'>Understand Your YT Audience Better!</h1>",
+         "<h1 style='text-align: center; font-size: 2.5rem;'>Understand Your YT Audience Better!</h1>",
          unsafe_allow_html=True
      )
     

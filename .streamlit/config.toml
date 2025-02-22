@@ -1,6 +1,18 @@
 [client]
 showSidebarNavigation = false
 
+[server]
+cookieSecret = "adc5b8c026f620a763d8f65861adb23a"
+
 [theme]
-base = "dark"
-textColor = "white"
+base="dark"
+primaryColor="#bb86fc"
+backgroundColor="#121212"
+secondaryBackgroundColor="#1e1e1e"
+textColor="#ffffff"
+font="sans serif"
+
+
+
+
+

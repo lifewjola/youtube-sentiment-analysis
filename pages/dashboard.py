@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_extras.metric_cards import style_metric_cards
 import sqlite3
 import pandas as pd
 import plotly.express as px
@@ -11,8 +12,17 @@ from backend.upsert_video import upsert_video
 from backend.upsert_comments import upsert_comments_for_video
 from backend.upsert_sentiment import analyze_sentiment_for_video
 
-st.set_page_config(page_title="YouTube Sentiment Dashboard", page_icon="images/YouTube-Icon-Full-Color-Logo.wine.svg", layout="wide")
+st.set_page_config(page_title="YouTube Sentiment Dashboard", page_icon="images/YouTube-Icon-Full-Color-Logo.wine.svg", layout="wide", )
 
+def generate_wordcloud(text, colormap):
+
+    custom_stopwords = STOPWORDS.union({"video", "watch", "channel", "subscribe", "like", "good"})
+
+    if not text:
+        return None
+    wc = WordCloud(width=400, height=200, background_color="white",
+                colormap=colormap, stopwords=custom_stopwords).generate(text)
+    return wc
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -23,10 +33,10 @@ DATABASE = 'youtube_dashboard.db'
 
 email = st.session_state.get("email", None)
 
-header1, header2 = st.columns(2)
-
-header2.image("images/YouTube-White-Full-Color-Logo.wine.png", width=150)
-
+st.markdown(
+    "<div style='text-align: right;'><img src='https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg' width='120'></div>", 
+    unsafe_allow_html=True
+)
 
 if email:
     name = get_nickname_by_email(email) or "You"
@@ -36,7 +46,7 @@ if email:
     user = cursor.fetchone()
     conn.close()
 
-    header1.title(f"Welcome, {name}")  
+    st.title(f"Welcome, {name}")  
 
     if user:
         user_id, youtube_username = user
@@ -54,7 +64,7 @@ if email:
                     conn.close()
 
                     video_urls = get_video_urls_from_username(youtube_username)
-                    video_urls_latest = get_video_urls_from_username(youtube_username)[:10]
+                    video_urls_latest = video_urls[:10]
 
                     if not video_urls:
                         st.warning("No videos found for this username.")
@@ -257,23 +267,69 @@ if email:
         with st.sidebar.expander("ℹ️ Metric Explanations"):
             st.write("- Overall Sentiment is based on the sentiment with the most comment likes.")
             st.write("- The deltas indicate performance in comparison to the last video")
+
         
-        st.sidebar.image("images/bmc.png", width=150)
-        st.sidebar.markdown("[☕ Buy Me a Coffee to support my work!](https://buymeacoffee.com/dataprincess)", unsafe_allow_html=True)
+        style_metric_cards(background_color="#4a4a4a", border_color="#4a4a4a", border_left_color="#4a4a4a")
+        
+        # st.sidebar.image("images/bmc.png", width=150)
+        # st.sidebar.markdown("[☕ Buy Me a Coffee to support my work!](https://buymeacoffee.com/dataprincess)", unsafe_allow_html=True)
 
 
+        st.markdown("---")
+        # Define colors for sentiment categories
+        custom_colors = {
+            "POSITIVE": "darkblue", 
+            "NEUTRAL": "lightgray", 
+            "NEGATIVE": "lightcoral"  
+        }
 
+        # Create sentiment data for bar chart
+        sentiment_data = pd.DataFrame({
+            "sentiment": ["POSITIVE", "NEUTRAL", "NEGATIVE"],
+            "count": [pos_count, neu_count, neg_count]
+        })
 
-        def generate_wordcloud(text, colormap):
+        # Create Bar Chart
+        fig = go.Figure()
+        for sentiment, color in custom_colors.items():
+            df_filtered = sentiment_data[sentiment_data["sentiment"] == sentiment]
+            fig.add_trace(go.Bar(
+                x=df_filtered["sentiment"], 
+                y=df_filtered["count"], 
+                name=sentiment.capitalize(),
+                marker=dict(color=color)
+            ))
 
-            custom_stopwords = STOPWORDS.union({"video", "watch", "channel", "subscribe", "like", "good"})
+        fig.update_layout(title_text="Sentiment Distribution")
 
-            if not text:
-                return None
-            wc = WordCloud(width=400, height=200, background_color="white",
-                        colormap=colormap, stopwords=custom_stopwords).generate(text)
-            return wc
+        # Place Bar Chart & Line Chart Side by Side
+        col_chart1, col_chart2 = st.columns(2)
 
+        with col_chart1:
+            st.plotly_chart(fig, use_container_width=True)  # Now fig is correctly defined
+
+        with col_chart2:
+            if not selected_comments.empty:
+                selected_comments["date"] = selected_comments["published_at"].dt.date
+                trend_data = selected_comments.groupby(["date", "sentiment"]).size().reset_index(name="count")
+
+                line_fig = px.line(
+                    trend_data, 
+                    x="date", 
+                    y="count", 
+                    color="sentiment",
+                    title="Sentiment Trend Over Time",
+                    line_group="sentiment",
+                    color_discrete_map=custom_colors,
+                )
+                
+                line_fig.update_yaxes(range=[0, max(trend_data["count"]) if not trend_data.empty else 10])
+
+                st.plotly_chart(line_fig, use_container_width=True)
+            else:
+                st.write("No comments available for trend analysis.")
+
+        # Word Clouds Below
         st.markdown("#### Keywords Associated with Each Sentiment")
 
         col_wc1, col_wc2, col_wc3 = st.columns(3)
@@ -304,54 +360,6 @@ if email:
                 ax.imshow(wc_negative, interpolation='bilinear')
                 ax.axis("off")
                 st.pyplot(fig)
-
-        custom_colors = {
-            "POSITIVE": "darkblue", 
-            "NEUTRAL": "lightgray", 
-            "NEGATIVE": "lightcoral"  
-        }
-
-        sentiment_data = pd.DataFrame({
-            "sentiment": ["POSITIVE", "NEUTRAL", "NEGATIVE"],
-            "count": [pos_count, neu_count, neg_count]
-        })
-
-
-        fig = go.Figure()
-
-        for sentiment, color in custom_colors.items():
-            df_filtered = sentiment_data[sentiment_data["sentiment"] == sentiment]
-            fig.add_trace(go.Bar(
-                x=df_filtered["sentiment"], 
-                y=df_filtered["count"], 
-                name=sentiment.capitalize(),
-                marker=dict(color=color)
-            ))
-
-        fig.update_layout(title_text="Sentiment Distribution")
-        
-        st.plotly_chart(fig, use_container_width=True)
-
-        if not selected_comments.empty:
-            selected_comments["date"] = selected_comments["published_at"].dt.date
-            
-            trend_data = selected_comments.groupby(["date", "sentiment"]).size().reset_index(name="count")
-
-            line_fig = px.line(
-                trend_data, 
-                x="date", 
-                y="count", 
-                color="sentiment",
-                title="Sentiment Trend Over Time",
-                line_group="sentiment",
-                color_discrete_map=custom_colors,
-            )
-            
-            line_fig.update_yaxes(range=[0, max(trend_data["count"]) if not trend_data.empty else 10])
-
-            st.plotly_chart(line_fig, use_container_width=True, key="chart_line")
-        else:
-            st.write("No comments available for trend analysis.")
 
 
         total_counts = comments_df.groupby("video_id").size().reset_index(name="total_comments")
