@@ -2,7 +2,7 @@ import streamlit as st
 import pathlib
 
 def main():
-    st.set_page_config(page_title="YouTube Sentiment Analysis", page_icon="images\\YouTube-Icon-Full-Color-Logo.wine.svg", layout="wide")
+    st.set_page_config(page_title="YouTube Sentiment Analysis", page_icon="🎥", layout="wide")
 
     # st.image("images\\YouTube-White-Full-Color-Logo.wine.png", width=200)
 
